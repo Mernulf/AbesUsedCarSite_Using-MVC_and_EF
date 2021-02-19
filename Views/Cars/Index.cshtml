@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MVC_CarDb.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Welcome to Honest Abe's Used Car! </h2>
+
+<p>
+    <a asp-action="Create">Sell a car</a> |
+    <a asp-action="Login">Login</a> |
+</p>
+<form asp-controller="Cars" asp-action="Index"> 
+    <p>
+        Search: <input type="text" name="Search" />
+        <input type="submit" name"="Search" /> 
+    </p>
+       
+       </form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seller)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Buy" asp-route-id="@item.Id">Buy</a> | Some of these depend on authorization level.
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
